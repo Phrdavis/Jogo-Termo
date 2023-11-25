@@ -1,7 +1,4 @@
-import Termo.Filtro;
-import Termo.GerarPalavraAleatoria;
-import Termo.RemoverAcentos;
-import Termo.Verificacao;
+import Termo.*;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -27,6 +24,7 @@ class Main {
         BufferedReader br = new BufferedReader(fr);
         Map<Integer, Boolean> verificacao = new HashMap<Integer, Boolean>();
         RemoverAcentos removerAcentos = new RemoverAcentos();
+        Exibir exibir = new Exibir();
 
 
         //Criando variaveis
@@ -44,27 +42,37 @@ class Main {
         System.out.println(palavra);
 
 
+        exibir.inicio();
+        exibir.apresetacao();
 
         //Solicitando palavra ao usuário e fazendo verificação de quantidade de letras para atualização de tentativas
-        while (tentativas > 0 || acerto) {
-            System.out.printf("\nDigite uma palavra de %d caracteres: ", caracteres);
-            userWord = scan.nextLine();
-            verificacao = verificar.verificarTamanho(userWord, tentativas);
 
-            for (Map.Entry<Integer, Boolean> entry : verificacao.entrySet()){
-                tentativas = entry.getKey();
-                acerto = entry.getValue();
+        while (tentativas > 0){
 
-                System.out.println(tentativas );
-                System.out.println(acerto);
+            while (tentativas > 0 || acerto) {
+                System.out.printf("\nDigite uma palavra de %d caracteres: ", caracteres);
+                userWord = scan.nextLine();
+                verificacao = verificar.verificarTamanho(userWord, tentativas);
+
+                for (Map.Entry<Integer, Boolean> entry : verificacao.entrySet()){
+                    tentativas = entry.getKey();
+                    acerto = entry.getValue();
+                }
             }
+
+            if (!acerto){
+                break;
+            }
+
             resultado = verificar.verificarPalavra(userWord, palavra, acerto);
 
             if(resultado){
                 break;
             }
 
+
             verificar.verificarLetras(userWord, palavra);
+
         }
 
 
