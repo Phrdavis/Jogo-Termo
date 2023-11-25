@@ -10,48 +10,42 @@ public class Verificacao {
 
     if (palavra.length() == 5) {
 
+      tentativas -= 1;
       result.put(tentativas, false);
 
       return result;
 
-    } else if (palavra.length() < 5) {
 
-      System.out.println("Palavras com tamanho insficiente!");
-      tentativas -= 1;
-
-      result.put(tentativas, true);
-      return result;
-
-    }else if (palavra.length() > 5) {
-
-      System.out.println("Palavras com tamanho excedente!");
-      tentativas -= 1;
+    }else {
 
       result.put(tentativas, true);
       return result;
 
     }
 
-    result.put(tentativas, true);
-    return result;
+
 
   }
 
-  public Boolean verificarLetras(String userPalavra, String systemPalavra) {
+  public Boolean verificarLetras(String userPalavra, String systemPalavra, Boolean acerto) {
 
-      if(Objects.equals(userPalavra, systemPalavra)){
+    if (!acerto) {
+      if (Objects.equals(userPalavra, systemPalavra)) {
 
         System.out.println("Parabens jogador! Você acertou a palavra secreta, toma aqui um biscoito :)");
 
         return true;
 
-      }else {
+      } else {
 
         System.out.println("Que pena, não foi dessa vez");
 
         return false;
 
       }
+    }
+
+    return false;
 
   }
 
