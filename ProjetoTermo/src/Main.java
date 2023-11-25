@@ -1,5 +1,6 @@
 import Termo.Filtro;
 import Termo.GerarPalavraAleatoria;
+import Termo.RemoverAcentos;
 import Termo.Verificacao;
 
 import java.io.BufferedReader;
@@ -24,24 +25,29 @@ class Main {
         Verificacao verificar = new Verificacao();
         FileReader fr = new FileReader(arquivo);
         BufferedReader br = new BufferedReader(fr);
+        Map<Integer, Boolean> verificacao = new HashMap<Integer, Boolean>();
+        RemoverAcentos removerAcentos = new RemoverAcentos();
+
+
+        //Criando variaveis
         String userWord = null;
         Boolean acerto = true;
-        Map<Integer, Boolean> verificacao = new HashMap<Integer, Boolean>();
-        int MaxTentativas = 5;
-        int tentativas = MaxTentativas;
+        int caracteres = 5;
+        int tentativas = 5;
         Boolean resultado = null;
 
 
         //Gerando uma palavra aleatória
         filtrar.filtrar(br, list);
-        String palavra = palavraAleatoria.gerarPalavraAleatoria(rand, list);
+        String aleatoria = palavraAleatoria.gerarPalavraAleatoria(rand, list);
+        String palavra = removerAcentos.removerAcentos(aleatoria);
         System.out.println(palavra);
 
 
 
         //Solicitando palavra ao usuário e fazendo verificação de quantidade de letras para atualização de tentativas
         while (tentativas > 0 || acerto) {
-            System.out.printf("\nDigite uma palavra de %d caracteres: ", MaxTentativas);
+            System.out.printf("\nDigite uma palavra de %d caracteres: ", caracteres);
             userWord = scan.nextLine();
             verificacao = verificar.verificarTamanho(userWord, tentativas);
 
@@ -52,11 +58,13 @@ class Main {
                 System.out.println(tentativas );
                 System.out.println(acerto);
             }
-            resultado = verificar.verificarLetras(userWord, palavra, acerto);
+            resultado = verificar.verificarPalavra(userWord, palavra, acerto);
 
             if(resultado){
                 break;
             }
+
+            verificar.verificarLetras(userWord, palavra);
         }
 
 

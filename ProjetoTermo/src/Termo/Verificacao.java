@@ -27,7 +27,7 @@ public class Verificacao {
 
   }
 
-  public Boolean verificarLetras(String userPalavra, String systemPalavra, Boolean acerto) {
+  public Boolean verificarPalavra(String userPalavra, String systemPalavra, Boolean acerto) {
 
     if (!acerto) {
       if (Objects.equals(userPalavra, systemPalavra)) {
@@ -36,16 +36,53 @@ public class Verificacao {
 
         return true;
 
-      } else {
-
-        System.out.println("Que pena, não foi dessa vez");
-
+      }
         return false;
 
-      }
+    }else{
+
+      return false;
+
     }
 
-    return false;
+
+  }
+
+
+  public void verificarLetras(String userPalavra, String systemPalavra){
+
+      char[] listUser = userPalavra.toCharArray();
+      char[] listSystem = systemPalavra.toCharArray();
+
+      String[] resultados = new String[listSystem.length];
+
+      for (int i = 0; i < listSystem.length; i++){
+
+        resultados[i] = "vermelho";
+
+      }
+
+      for (int i = 0; i < listSystem.length; i++) {
+        System.out.println(i);
+        char user = listUser[i];
+
+        for (int j = i; j < listUser.length; j++) {
+          System.out.println(j);
+            char system = listSystem[j];
+            if (system == user) {
+
+              resultados[i] = "amarelo";
+
+              if (i == j){
+                resultados[j] = "verde";
+              }
+
+              break;
+
+            }
+        }
+        System.out.println(resultados[i]);
+    }
 
   }
 
