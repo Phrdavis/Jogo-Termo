@@ -49,7 +49,7 @@ public class Verificacao {
   }
 
 
-  public void verificarLetras(String userPalavra, String systemPalavra){
+  public Boolean verificarLetras(String userPalavra, String systemPalavra){
 
       char[] listUser = userPalavra.toCharArray();
       char[] listSystem = systemPalavra.toCharArray();
@@ -63,26 +63,45 @@ public class Verificacao {
       }
 
       for (int i = 0; i < listSystem.length; i++) {
-        System.out.println(i);
         char user = listUser[i];
 
-        for (int j = i; j < listUser.length; j++) {
-          System.out.println(j);
+        for (int j = 0; j < listUser.length; j++) {
             char system = listSystem[j];
+            System.out.println(user + "    " + system);
             if (system == user) {
 
               resultados[i] = "amarelo";
 
               if (i == j){
-                resultados[j] = "verde";
+                resultados[i] = "verde";
               }
-
-              break;
+                System.out.println(j + "    " + i);
+                break;
 
             }
         }
-        System.out.println(resultados[i]);
-    }
+          System.out.println("\n");
+      }
+
+      for (String result : resultados){
+
+          System.out.println(result);
+
+      }
+
+
+      Boolean correto = true;
+
+      for (String result : resultados){
+
+        if (!Objects.equals(result, "verde")){
+          correto = false;
+          break;
+        }
+
+      }
+
+      return correto;
 
   }
 

@@ -25,6 +25,7 @@ class Main {
         Map<Integer, Boolean> verificacao = new HashMap<Integer, Boolean>();
         RemoverAcentos removerAcentos = new RemoverAcentos();
         Exibir exibir = new Exibir();
+        List<String> nomes = new ArrayList<String>();
 
 
         //Criando variaveis
@@ -33,6 +34,10 @@ class Main {
         int caracteres = 5;
         int tentativas = 5;
         Boolean resultado = null;
+
+        nomes.add("Alexandre Butzke");
+        nomes.add("Davi Pinheiro de Souza");
+        nomes.add("Gabriel Madalena dos Santos");
 
 
         //Gerando uma palavra aleatória
@@ -43,13 +48,13 @@ class Main {
 
 
         exibir.inicio();
-        exibir.apresetacao();
+        exibir.apresetacao(nomes, tentativas);
 
         //Solicitando palavra ao usuário e fazendo verificação de quantidade de letras para atualização de tentativas
 
         while (tentativas > 0){
 
-            while (tentativas > 0 || acerto) {
+            while (acerto) {
                 System.out.printf("\nDigite uma palavra de %d caracteres: ", caracteres);
                 userWord = scan.nextLine();
                 verificacao = verificar.verificarTamanho(userWord, tentativas);
@@ -60,10 +65,6 @@ class Main {
                 }
             }
 
-            if (!acerto){
-                break;
-            }
-
             resultado = verificar.verificarPalavra(userWord, palavra, acerto);
 
             if(resultado){
@@ -71,7 +72,13 @@ class Main {
             }
 
 
-            verificar.verificarLetras(userWord, palavra);
+            Boolean resultadoFinal = verificar.verificarLetras(userWord, palavra);
+
+            if (resultadoFinal){
+                break;
+            }else {
+                acerto = true;
+            }
 
         }
 

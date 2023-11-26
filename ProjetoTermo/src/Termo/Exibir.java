@@ -14,28 +14,37 @@ public class Exibir {
         return null;
     }
 
-    public PrintStream apresetacao(List<String> integrantes){
+    public PrintStream apresetacao(List<String> integrantes, int tentativas){
 
-        System.out.printf("%60s\n", "                                 INTEGRANTES                                  ");
+
+        System.out.printf("%60s\n\n", "                                 INTEGRANTES                                  ");
 
         for (String nome : integrantes){
 
             int tamanhoNome = nome.length();
-            int calculo = (60 - tamanhoNome)/2;
-            for (int i = 1; i < tamanhoNome; i++){
-                System.out.println();
+            int calculo = (80 - tamanhoNome)/2;
+            for (int i = 1; i < calculo; i++){
+                System.out.printf("%s", " ");
             }
-            System.out.printf("%60s\n", "                               Alexandre Butzke                               ");
+            System.out.printf("%s", nome);
+            for (int i = 1; i < calculo; i++){
+                System.out.printf("%s", " ");
+            }
+            System.out.println("");
 
         }
 
-        System.out.printf("%60s\n", "                               Alexandre Butzke                               ");
-        System.out.printf("%60s\n", "                            Davi Pinheiro de Souza                            ");
-        System.out.printf("%60s\n", "                          Gabriel Madalena dos Santos                         ");
+        System.out.printf("%60s\n", "------------------------------------------------------------------------------");
+        System.out.printf("%60s\n\n", "                               Nº DE TENTATIVAS                               ");
+        System.out.printf("%29s%2s%29s\n", "                                ", tentativas, " Tentativas                                ");
+
+        System.out.printf("%60s\n\n", "------------------------------------------------------------------------------");
+        System.out.printf("%60s\n", "                                 VAMOS COMEÇAR?                                 ");
 
         return null;
 
     }
+
 
 
 }
