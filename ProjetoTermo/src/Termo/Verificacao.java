@@ -4,6 +4,8 @@ import java.util.*;
 
 public class Verificacao {
 
+    private Map<Boolean, String[]> resultadoFinal;
+
   public Map<Integer, Boolean> verificarTamanho(String palavra, Integer tentativas) {
 
     Map<Integer, Boolean> result = new HashMap<Integer, Boolean>();
@@ -32,8 +34,6 @@ public class Verificacao {
     if (!acerto) {
       if (Objects.equals(userPalavra, systemPalavra)) {
 
-        System.out.println("Parabens jogador! Você acertou a palavra secreta, toma aqui um biscoito :)");
-
         return true;
 
       }
@@ -49,7 +49,9 @@ public class Verificacao {
   }
 
 
-  public Boolean verificarLetras(String userPalavra, String systemPalavra){
+  public Map<Boolean, String[]> verificarLetras(String userPalavra, String systemPalavra){
+
+      resultadoFinal = new HashMap<>();
 
       char[] listUser = userPalavra.toCharArray();
       char[] listSystem = systemPalavra.toCharArray();
@@ -67,26 +69,17 @@ public class Verificacao {
 
         for (int j = 0; j < listUser.length; j++) {
             char system = listSystem[j];
-            System.out.println(user + "    " + system);
             if (system == user) {
 
               resultados[i] = "amarelo";
 
               if (i == j){
                 resultados[i] = "verde";
+                  break;
               }
-                System.out.println(j + "    " + i);
-                break;
 
             }
         }
-          System.out.println("\n");
-      }
-
-      for (String result : resultados){
-
-          System.out.println(result);
-
       }
 
 
@@ -101,7 +94,9 @@ public class Verificacao {
 
       }
 
-      return correto;
+      resultadoFinal.put(correto, resultados);
+
+      return resultadoFinal;
 
   }
 

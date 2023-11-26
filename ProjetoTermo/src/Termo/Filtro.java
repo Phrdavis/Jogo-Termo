@@ -6,11 +6,11 @@ import java.util.List;
 
 public class Filtro {
 
-  public List<String> filtrar(BufferedReader br, List<String> list) throws IOException{
+  public List<String> filtrar(BufferedReader br, List<String> list, int tamanho) throws IOException{
 
     String linha;
     while ((linha = br.readLine()) != null) {
-      if (linha.length() == 5) {
+      if (linha.length() == tamanho) {
         list.add(linha);
       }
     }

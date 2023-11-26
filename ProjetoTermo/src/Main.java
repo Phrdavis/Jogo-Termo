@@ -10,8 +10,6 @@ class Main {
 
     public static void main(String[] args) throws IOException {
 
-//        System.out.println("Diretório atual: " + System.getProperty("user.dir"));
-
         //Criando Objetos
         File arquivo = new File("src/palavras.txt");
         List<String> list = new ArrayList<>();
@@ -25,41 +23,56 @@ class Main {
         Map<Integer, Boolean> verificacao = new HashMap<Integer, Boolean>();
         RemoverAcentos removerAcentos = new RemoverAcentos();
         Exibir exibir = new Exibir();
-        List<String> nomes = new ArrayList<String>();
+        Colors colors = new Colors();
+        Integrantes integrantes = new Integrantes();
 
 
         //Criando variaveis
         String userWord = null;
         Boolean acerto = true;
         int caracteres = 5;
-        int tentativas = 5;
+        int tentativas = 7;
         Boolean resultado = null;
 
-        nomes.add("Alexandre Butzke");
-        nomes.add("Davi Pinheiro de Souza");
-        nomes.add("Gabriel Madalena dos Santos");
-
+        integrantes.setIntegrante("Alexandre Butzke");
+        integrantes.setIntegrante("Davi Pinheiro de Souza");
+        integrantes.setIntegrante("Gabriel Madalena dos Santos");
 
         //Gerando uma palavra aleatória
-        filtrar.filtrar(br, list);
+        filtrar.filtrar(br, list, caracteres);
         String aleatoria = palavraAleatoria.gerarPalavraAleatoria(rand, list);
-        String palavra = removerAcentos.removerAcentos(aleatoria);
-        System.out.println(palavra);
+        String palavra = removerAcentos.removerAcentos(aleatoria).toUpperCase();
+
+        //Gerando Cores para console
+        final String ANSI_GREEN = "\u001B[32m";
+        final String ANSI_RED = "\u001B[31m";
+        final String ANSI_YELLOW = "\u001B[33m";
+        final String ANSI_RESET = "\u001B[0m";
+
+        //Adicionando cores a lista
+        colors.setColor(ANSI_GREEN);     // -> Verde
+        colors.setColor(ANSI_YELLOW);    // -> Amarelo
+        colors.setColor(ANSI_RED);       // -> Verde
+
+        colors.setColor(ANSI_RESET);     // -> Encerra as cores
 
 
+        //Chamando apresentação do jogo
         exibir.inicio();
-        exibir.apresetacao(nomes, tentativas);
+        exibir.integrantes(integrantes.getIntegrantes(), colors.getColors());
+        exibir.apresetacao(tentativas);;
+
+
 
         //Solicitando palavra ao usuário e fazendo verificação de quantidade de letras para atualização de tentativas
-
-        while (tentativas > 0){
+        while (tentativas > 0) {
 
             while (acerto) {
-                System.out.printf("\nDigite uma palavra de %d caracteres: ", caracteres);
-                userWord = scan.nextLine();
+                exibir.pedirPalavra(caracteres);
+                userWord = scan.nextLine().toUpperCase();
                 verificacao = verificar.verificarTamanho(userWord, tentativas);
 
-                for (Map.Entry<Integer, Boolean> entry : verificacao.entrySet()){
+                for (Map.Entry<Integer, Boolean> entry : verificacao.entrySet()) {
                     tentativas = entry.getKey();
                     acerto = entry.getValue();
                 }
@@ -67,18 +80,33 @@ class Main {
 
             resultado = verificar.verificarPalavra(userWord, palavra, acerto);
 
-            if(resultado){
-                break;
+
+
+            Map<Boolean, String[]> resultadoFinal = verificar.verificarLetras(userWord, palavra);
+
+            Boolean resultadoBoolean = null;
+            String[] resultadoLista = new String[0];
+
+            for (Map.Entry<Boolean, String[]> entry : resultadoFinal.entrySet()) {
+
+                resultadoBoolean = entry.getKey();
+                resultadoLista = entry.getValue();
+
             }
 
 
-            Boolean resultadoFinal = verificar.verificarLetras(userWord, palavra);
+            exibir.resultado(resultadoLista, userWord, colors.getColors());
 
-            if (resultadoFinal){
+
+            if (resultadoBoolean || tentativas == 0) {
+                exibir.fimDoJogo(resultado);
                 break;
-            }else {
+            } else {
                 acerto = true;
             }
+
+            exibir.tentativas(tentativas);
+            ;
 
         }
 
