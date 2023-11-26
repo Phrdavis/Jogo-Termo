@@ -12,7 +12,7 @@ public class Exibir {
     public PrintStream inicio(){
 
         System.out.printf("%60s\n", "------------------------------------------------------------------------------");
-        System.out.printf("%60s\n", "                               JOGO DO "+ ANSI_GREEN +" TERMO "+ ANSI_RESET +"                                ");
+        System.out.printf("%60s\n", "                         BEM VINDO AO " + ANSI_GREEN + " JOGO DO TERMO "+ ANSI_RESET +"                                ");
         System.out.printf("%60s\n", "------------------------------------------------------------------------------");
 
         return null;
