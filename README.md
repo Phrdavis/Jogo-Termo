@@ -12,6 +12,8 @@ Este projeto foi realizado pelos alunos:
 
 # Informações
 
+ Os arquivos do jogo estão contidos na pasta "ProjetoTermo", é por essa pasta que deve ser iniciado o jogo.  
+
 Linguagem: Java
 
 Plataforma utilizada: Intellij
