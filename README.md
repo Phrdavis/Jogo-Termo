@@ -14,11 +14,11 @@ Este projeto foi realizado pelos alunos:
 
 # Jogo
 
-O projeto em questão tem como base o famoso jogo Termo, na qual possui o intuito de fazer com que o usuário, em um numero reduzido de tentativas, tente adivinhar a palavra do dia, oferencendo dicas pelas letras contidas nas palavras. 
+O projeto em questão tem como base o famoso jogo Termo, na qual possui o intuito de fazer com que o usuário, em um número reduzido de tentativas, tente adivinhar a palavra do dia, oferencendo dicas pelas letras contidas nas palavras. 
 
-Nessa replica o intuito é o mesmo, o sistema sorteará uma palavra aleatória com um valor especifico de caracteres e dará um numero X de tentativas para o jogador tentar adivinhar a palavra certo. Caso a palavra digitada tenha letras que contenham e estejam no mesmo lugar que a palavra sorteada, a letra ficará verde, já se a letra estiver certa mas em um lugar diferente, a letra ficará amarela. Agora se você digitar uma letra que não contenha na palavra sorteada, a letra ficará vermelha. 
+Nessa replica o intuito é o mesmo, o sistema sorteará uma palavra aleatória com um valor especifico de caracteres e dará um número X de tentativas para o jogador tentar adivinhar a palavra certo. Caso a palavra digitada tenha letras que contenham e estejam no mesmo lugar que a palavra sorteada, a letra ficará verde, já se a letra estiver certa mas em um lugar diferente, a letra ficará amarela. Agora se você digitar uma letra que não contenha na palavra sorteada, a letra ficará vermelha. 
 
-O sistema foi desenvolvido para não aceitar palavras menores ou maiores que o numero de caracteres especificado, sendo assim, o jogador não perderá tentativas ao digitar uma palavra inválida. 
+O sistema foi desenvolvido para não aceitar palavras menores ou maiores que o número de caracteres especificado, sendo assim, o jogador não perderá tentativas ao digitar uma palavra inválida. 
 
 <img width="100%" src="https://github.com/Phrdavis/Jogo-Termo/assets/105741181/edda564a-0273-4332-9401-3ecc4800af64">
 
